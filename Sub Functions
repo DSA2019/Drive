@@ -1,0 +1,46 @@
+#include "basic.c"
+
+
+///Reads the information and writes it on linked lists.
+
+void read (DEFENCE* head)
+{
+    head = (DEFENCE*)malloc(sizeof(DEFENCE));
+
+    head -> next = NULL;
+
+    printf("Enter the equipment to be deployed:");
+
+    gets( head -> name );
+
+    printf("Enter No. of units to be deployed:");
+
+    scanf("%d",&(head -> unit));
+
+}
+
+
+///To insert a new defence equipment
+
+void insert (DEFENCE* head)
+{
+    if(head != NULL)
+
+        read(head);
+
+    else
+    {
+
+      DEFENCE *newnode, *n;
+
+      n = head;
+
+      while( n!= NULL )
+
+        n = n -> next;
+
+      read(newnode);
+
+    }
+
+}
