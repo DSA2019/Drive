@@ -1,0 +1,93 @@
+
+#include "basic.c"
+
+
+int main()
+{
+    int choice;
+
+    printf("Tribute to INDIAN ARMED FORECES");
+
+    while(1)
+
+    {
+
+        printf("\n**********Menu**********\n");
+
+        printf("1.Cease fire violation.\n");
+
+        printf("2.Enemy encroach.\n");
+
+        printf("3.War declared.\n");
+
+        printf("4.Clear all databases.\n");
+
+        printf("5.Exit");
+
+        printf("\n**********Menu**********\n");
+
+        printf("Enter your choice:");
+
+        scanf("%d", &choice);
+
+            switch(choice)
+            {
+
+            case 1:
+
+                    system("cls");
+
+                    ///ceasefire();
+
+                break;
+
+            case 2:
+
+                    system("cls");
+
+                    ///enchroach();
+
+                break;
+
+            case 3:
+
+                    system("cls");
+
+                    ///war();
+
+                break;
+
+            case 4:
+
+                    system("cls");
+
+                    printf("Your data is deleted..\n");
+
+                    ///Free all data....
+
+                break;
+
+            case 5:
+
+                    system("cls");
+
+                    printf("Jai Hind...\n");
+
+                    return 0;
+
+                break;
+
+            default:
+
+                system("cls");
+
+                printf("Please enter a valid input.\n");
+
+                break;
+
+        }
+
+    }
+
+    return 0;
+}
