@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <conio.h>
+
+///Linked list for storing defence equipments
+struct DEFENCE
+{
+    char name[20];
+
+    int unit;
+
+    struct DEFENCE *next;
+
+};
+
+typedef struct DEFENCE DEFENCE;
+
+
+///Data structure for storing information of a particular district
+struct DISTRICT
+{
+    int index;
+
+    char name[20];
+
+    int area;
+
+    int distance;
+
+    int population;
+
+    int troops;
+
+    DEFENCE *equipments;
+
+    bool hospital;
+
+    bool army_base;
+
+    bool border_state;
+
+};
