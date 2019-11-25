@@ -1,17 +1,21 @@
-
 #include "basic.c"
-
+/**
+Name:
+**/
 
 int main()
 {
     int choice;
+
+    input();
+
+    input_district();
 
     printf("Tribute to INDIAN ARMED FORECES");
 
     while(1)
 
     {
-
         printf("\n**********Menu**********\n");
 
         printf("1.Cease fire violation.\n");
@@ -22,7 +26,9 @@ int main()
 
         printf("4.Clear all databases.\n");
 
-        printf("5.Exit");
+        printf("5.Show details.\n");
+
+        printf("6.Exit.");
 
         printf("\n**********Menu**********\n");
 
@@ -37,7 +43,7 @@ int main()
 
                     system("cls");
 
-                    ///ceasefire();
+                    ceasefire();
 
                 break;
 
@@ -45,7 +51,7 @@ int main()
 
                     system("cls");
 
-                    ///enchroach();
+                    enchroach();
 
                 break;
 
@@ -53,7 +59,7 @@ int main()
 
                     system("cls");
 
-                    ///war();
+                    war();
 
                 break;
 
@@ -69,13 +75,21 @@ int main()
 
             case 5:
 
-                    system("cls");
+                system("cls");
 
-                    printf("Jai Hind...\n");
-
-                    return 0;
+                display();
 
                 break;
+
+            case 6:
+
+                    system("cls");
+
+                    //evacuate();
+
+                    jai_hind();
+
+                    return 0;
 
             default:
 
