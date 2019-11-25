@@ -1,46 +1,363 @@
 #include "basic.c"
 
+#include <stdio.h>
 
-///Reads the information and writes it on linked lists.
+#include "Evacuvate.c"
 
-void read (DEFENCE* head)
+void evacuate(int);
+
+void air_war();
+
+void ground_war();
+
+void ceasefire()
 {
-    head = (DEFENCE*)malloc(sizeof(DEFENCE));
+    int n,index;
 
-    head -> next = NULL;
+    printf("Enter the No. of Districts:");
 
-    printf("Enter the equipment to be deployed:");
+    scanf("%d",&n);
 
-    gets( head -> name );
+    for(int i=0 ; i < n ; i++)
+    {
+            printf("Enter the index:");
 
-    printf("Enter No. of units to be deployed:");
+            scanf("%d",&index);
 
-    scanf("%d",&(head -> unit));
+            printf("Troops shelling has been increased in %s district.\n",Crown[index].name);
+
+            evacuate(index);
+
+            Crown[index].troops+=100;
+    }
+}
+
+void enchroach()
+{
+    int n,index;
+
+    printf("Enter the No. of Districts:");
+
+    scanf("%d",&n);
+
+    for(int i=0 ; i < n ; i++)
+    {
+            printf("Enter the index:");
+
+            scanf("%d",&index);
+
+            printf("Troops shelling has been increased in %s district.\n",Crown[index].name);
+
+            Crown[index].troops+=100;
+    }
+}
+
+void jai_hind()
+{
+    printf("  *************      *****      *************         ***       ***   *************   ****       ***  *********    \n");
+
+    printf("  *************     *******     *************         ***       ***   *************   *****      ***  **********   \n");
+
+    printf("        ***        ***   ***         ***              ***       ***        ***        ******     ***  ***     **** \n");
+
+    printf("        ***       ***     ***        ***              ***       ***        ***        ***  ***   ***  ***      ****\n");
+
+    printf("        ***      *************       ***              *************        ***        ***   ***  ***  ***       ***\n");
+
+    printf(" ***    ***      *************       ***              *************        ***        ***    *** ***  ***      ****\n");
+
+    printf(" ***    ***      ***       ***       ***              ***       ***        ***        ***     ******  ***     **** \n");
+
+    printf("  ********       ***       ***  *************         ***       ***   *************   ***      *****  **********   \n");
+
+    printf("    *****        ***       ***  *************         ***       ***   *************   ***       ****  ********     \n");
+}
+
+
+
+void war()
+{
+    printf ("Which type of attack?\n");
+
+    printf  ("1.Aerial\n");
+
+    printf ("2.Ground\n");
+
+    printf ("Enter your choice:");
+
+    int war_choice;
+
+    scanf ("%d",&war_choice);
+
+    switch(war_choice)
+    {
+
+    case 1:
+
+            air_war();
+
+        break;
+
+    case 2:
+
+            ground_war();
+
+        break;
+
+    default:
+
+        printf("PLease enter the valid input.\nWe have time to joke or to commit mistake.\n");
+
+        break;
+
+    }
+
+}
+
+void air_war()
+{
+    int dist_no,index;
+
+    printf ("Air protection protocol activated.\nMajor defence systems has been activated.\n");
+
+    printf ("Enter the No. of Districts being attacked:");
+
+    scanf("%d",&dist_no);
+
+    for( int i=0;i<dist_no;i++)
+    {
+        printf("Enter the index of given district:");
+
+        scanf("%d",&index);
+
+        printf ("Citizens from %s will be evacuated as soon as possible.\n",Crown[index].name);
+
+        evacuate(index);
+
+        strcpy(Crown[index].tools[Crown[index].equipments+0].name,"Anti-aircraft missile launchers");
+
+        Crown[index].tools[Crown[index].equipments+0].unit=10;
+
+        strcpy(Crown[index].tools[Crown[index].equipments+1].name,"Anti-ballistic missile launchers");
+
+        Crown[index].tools[Crown[index].equipments+1].unit=5;
+
+        Crown[index].equipments+=2;
+
+        Crown[index].troops+=100;
+
+    }
+
+    printf ("Armed forces are on the way.\n");
+
+    printf("BSF will defend us till then.\n");
+}
+
+void ground_war()
+{
+    int dist_no,index;
+
+    printf ("Ground protection protocol activated.\nMajor defence systems has been activated.\n");
+
+    printf ("Enter the No. of Districts being attacked:");
+
+    scanf("%d",&dist_no);
+
+    for( int i=0;i<dist_no;i++)
+    {
+
+        printf("Enter the index of given district:");
+
+        scanf("%d",&index);
+
+        printf ("Citizens from %s will be evacuated as soon as possible.\n",Crown[index].name);
+
+        evacuate(index);
+
+        strcpy(Crown[index].tools[Crown[index].equipments+0].name,"Mortar");
+
+        Crown[index].tools[Crown[index].equipments+0].unit=100;
+
+        strcpy(Crown[index].tools[Crown[i].equipments+1].name,"Tanks");
+
+        Crown[index].tools[Crown[index].equipments+1].unit=5;
+
+        Crown[index].equipments+=2;
+
+        Crown[index].troops+=100;
+
+    }
+
+    printf ("Armed forces are on the way.\n");
+
+    printf("BSF will defend us till then.\n");
 
 }
 
 
-///To insert a new defence equipment
-
-void insert (DEFENCE* head)
+void input()
 {
-    if(head != NULL)
+    int i;
 
-        read(head);
+    int j;
 
-    else
+    FILE *file;
+
+    file=fopen("dist.txt", "r");
+
+    for(i = 1; i <=22; i++)
     {
+        for(j = 1; j <=22 ; j++)
+        {
+            if (!fscanf(file, "%d", &m[i][j]))
+                break;
+        }
+    }
+    fclose(file);
 
-      DEFENCE *newnode, *n;
+    for(i=1;i<23;i++)
+    {
+        for(j=1;j<23; j++)
+        {
+            for(int k=1;k<23;k++)
+            {
+                if(m[i][j]>m[i][k]+m[k][j])
+                {
+                    m[i][j]=m[i][k]+m[k][j];
+                }
+            }
+        }
+    }
+}
 
-      n = head;
+void input_district()
+{
 
-      while( n!= NULL )
+    FILE *fp;
 
-        n = n -> next;
+    fp = fopen ("District.txt","r");
 
-      read(newnode);
+    int i=1;
+
+    while(!feof(fp) && i<=22)
+    {
+            fscanf (fp,"%d",&Crown[i].index);
+
+            fscanf(fp,"%[^\n]%*c",Crown[i].name);
+
+            fscanf(fp,"%d",&Crown[i].area);
+
+            fscanf(fp,"%d",&Crown[i].distance);
+
+            fscanf(fp,"%d",&Crown[i].population);
+
+            fscanf(fp,"%d",&Crown[i].troops);
+
+            fscanf(fp,"%d",&Crown[i].equipments);
+
+            fscanf(fp,"%d",&Crown[i].hospital);
+
+            fscanf(fp,"%d",&Crown[i].army_base);
+
+            fscanf(fp,"%d",&Crown[i].border_state);
+
+            i++;
 
     }
+
+}
+
+void display()
+{
+    int i;
+
+    printf ("Enter the index:");
+
+    scanf("%d",&i);
+
+        printf("Index:%d\n",Crown[i].index);
+
+        printf("Name:%s\n",Crown[i].name);
+
+        printf("Area:%d\n",Crown[i].area);
+
+        printf("Distance from New Delhi:%d\n",Crown[i].distance);
+
+        printf("Population:%d\n",Crown[i].population);
+
+        printf("Troops:%d\n",Crown[i].troops);
+
+        if( Crown[i].equipments == 0)
+
+            printf ("No equipments deployed.\n");
+
+        else
+        {
+            for(int j=0 ; j < Crown[i].equipments ; j++)
+            {
+                printf("%d units of %s deployed.\n",Crown[i].tools[j].unit,Crown[i].tools[j].name);
+            }
+        }
+
+        if(Crown[i].hospital)
+
+            printf ("Hospital is present.\n");
+
+        else
+
+            printf("Hospital not there\n");
+
+        if(Crown[i].army_base)
+
+            printf ("Army base is present.\n");
+
+        else
+            printf("Army base not there\n");
+
+        if(Crown[i].border_state)
+
+            printf ("It is a border state.\n");
+
+        else
+
+            printf("It is not border state.\n");
+
+}
+
+void evacuate(int x)
+{
+
+    int j;
+
+    int i=x;
+
+    int smallest;
+
+    int z;
+
+    int y[23];
+
+    for(j=1;j<23;j++)
+    {
+        y[j]=m[i][j];
+
+    }
+
+    smallest=y[0];
+
+    for(i=0;i<22;i++)
+    {
+        if(y[i]<smallest && y[i]!=0)
+        {
+            smallest = y[i];
+
+             if(smallest==y[i])
+              {
+                z=i;
+              }
+        }
+    }
+
+    printf("Citizen will be shifted to %s.\n",Crown[z].name);
 
 }
